@@ -13,7 +13,7 @@ namespace RNG.Library
         public GaussRandom()
         {
             sigma = 1;
-            alpha = 6;
+            alpha = 0;
         }
 
         public GaussRandom(double sigma, double alpha)

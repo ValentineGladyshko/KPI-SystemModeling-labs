@@ -8,6 +8,7 @@ namespace RNG.Library
     {
         private readonly long a = 1220703125;
         private readonly long c = 2147483648;
+
         private long current;
 
         public UniformRandom()

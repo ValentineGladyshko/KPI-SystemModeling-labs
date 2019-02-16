@@ -21,7 +21,8 @@ namespace RNG
             }
 
             Show(list);
-            Console.WriteLine("Quadratic Chi:" + random.IndificateDistributionLaw(list));
+            DistributionStatistics(list);
+            Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
 
             random = new UniformRandom();
             list = new List<double>(10000);
@@ -32,7 +33,8 @@ namespace RNG
             }
 
             Show(list);
-            Console.WriteLine("Quadratic Chi:" + random.IndificateDistributionLaw(list));
+            DistributionStatistics(list);
+            Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
 
             random = new GaussRandom();
             list = new List<double>(10000);
@@ -43,7 +45,8 @@ namespace RNG
             }
 
             Show(list);
-            Console.WriteLine("Quadratic Chi:" + random.IndificateDistributionLaw(list));
+            DistributionStatistics(list);
+            Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -89,47 +92,18 @@ namespace RNG
             }
         }
 
-        //static void DistributionLaw(List<double> list, IRandom random)
-        //{
-        //    if (list != null)
-        //    {
-        //        double step = (list.Max() - list.Min()) / 20;
-        //        double[] range = new double[21];
-        //        double start = list.Min();
-        //        for (int i = 0; i < 20; i++)
-        //        {
-        //            range[i] = start + i * step;
-        //        }
+        public static void DistributionStatistics(List<double> list)
+        {
+            double average = list.Sum() / list.Count;
+            double dispersion = 0;
+            foreach (var num in list)
+            {
+                dispersion += Math.Pow((num - average), 2);
+            }
 
-        //        range[20] = list.Max();
+            dispersion = dispersion / list.Count;
 
-        //        int[] stat = new int[20];
-        //        foreach (var num in list)
-        //        {
-        //            int i = 1;
-        //            while (num > range[i])
-        //            {
-        //                i++;
-        //            }
-
-        //            stat[i - 1]++;
-        //        }
-
-        //        start = list.Min();
-
-        //        double phi = 0;
-        //        double sum = 0;
-        //        foreach (var some in stat)
-        //        {
-        //            double x1 = random.StatisticCount(start + step/2) /*- random.StatisticCount(start)*/;
-        //            sum += x1;
-        //            double x2 = (double) some / list.Count;
-        //            phi += Math.Pow((x1 - x2), 2) / x1;
-        //            start += step;
-        //        }
-
-        //        Console.WriteLine(sum +" "+phi);
-        //    }
-        //}
+            Console.WriteLine("average: " + average.ToString("F4") + " dispersion: " + dispersion.ToString("F4"));
+        }
     }
 }
