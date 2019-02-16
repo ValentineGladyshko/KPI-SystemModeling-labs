@@ -33,15 +33,20 @@ namespace RNG.Library
             return sigma * num + alpha;
         }
 
-        public double StatisticCount(double x)
+        public double StatisticCount(double x1, double x2)
         {
-            double i1 = Math.Pow((x - alpha), 2);
-            double i2 = (2 * Math.Pow(sigma, 2));
-            double i3 = 1.0 / (sigma * Math.Sqrt(2 * Math.PI));
-            double i4 = i3;
-            return 1.0 / (sigma * Math.Sqrt(2 * Math.PI)) *
-                   Math.Exp(-(i1 / i2));
+            int integral = 1000;
+            double step = (x2 - x1) / integral;
+            double result = 0.0;
+            for (int i = 0; i < integral; i++)
+            {
+                result += (1.0 / (sigma * Math.Sqrt(2 * Math.PI)) *
+                              Math.Exp(-Math.Pow((x1 + step * i - alpha), 2) / (2 * Math.Pow(sigma, 2)))) * step;
+            }
+
+            return result;
         }
+
         public double IndificateDistributionLaw(List<double> list)
         {
             if (list != null)
@@ -70,17 +75,17 @@ namespace RNG.Library
 
                 start = list.Min();
 
-                double phi = 0;
-
+                double сhi = 0;
+                
                 foreach (var some in stat)
                 {
-                    double x1 = StatisticCount(start + step) - StatisticCount(start);
+                    double x1 = StatisticCount(start, start + step);
                     double x2 = (double)some / list.Count;
-                    phi += Math.Pow((x1 - x2), 2) / x1;
+                    сhi += Math.Pow((x1 - x2), 2) / x1;
                     start += step;
                 }
 
-                return phi;
+                return сhi;
             }
 
             return 10;

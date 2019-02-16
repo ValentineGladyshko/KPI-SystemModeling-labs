@@ -21,7 +21,7 @@ namespace RNG
             }
 
             Show(list);
-            Console.WriteLine("Quadratic Phi:" + random.IndificateDistributionLaw(list));
+            Console.WriteLine("Quadratic Chi:" + random.IndificateDistributionLaw(list));
 
             random = new UniformRandom();
             list = new List<double>(10000);
@@ -32,7 +32,18 @@ namespace RNG
             }
 
             Show(list);
-            Console.WriteLine("Quadratic Phi:" + random.IndificateDistributionLaw(list));
+            Console.WriteLine("Quadratic Chi:" + random.IndificateDistributionLaw(list));
+
+            random = new GaussRandom();
+            list = new List<double>(10000);
+
+            for (int i = 0; i < 10000; i++)
+            {
+                list.Add(random.Next());
+            }
+
+            Show(list);
+            Console.WriteLine("Quadratic Chi:" + random.IndificateDistributionLaw(list));
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();

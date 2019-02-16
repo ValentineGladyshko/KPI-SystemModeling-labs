@@ -47,17 +47,17 @@ namespace RNG.Library
 
                 start = list.Min();
 
-                double phi = 0;
+                double сhi = 0;
 
                 foreach (var some in stat)
                 {
                     double x1 = StatisticCount(start + step) - StatisticCount(start);
                     double x2 = (double) some / list.Count;
-                    phi += Math.Pow((x1 - x2), 2) / x1;
+                    сhi += Math.Pow((x1 - x2), 2) / x1;
                     start += step;
                 }
 
-                return phi;
+                return сhi;
             }
 
             return 10;
