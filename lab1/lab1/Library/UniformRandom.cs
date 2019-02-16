@@ -65,8 +65,8 @@ namespace RNG.Library
 
                 foreach (var some in stat)
                 {
-                    double x1 = StatisticCount(start + step) - StatisticCount(start);
-                    double x2 = (double)some / list.Count;
+                    double x1 = (StatisticCount(start + step) - StatisticCount(start)) * list.Count;
+                    double x2 = some;
                     сhi += Math.Pow((x1 - x2), 2) / x1;
                     start += step;
                 }
@@ -79,7 +79,7 @@ namespace RNG.Library
 
         public void DistributionStatistics()
         {
-            Console.WriteLine("Expected:\n\taverage 0.5 dispersion: 0.0");
+            Console.WriteLine("Expected:\n\taverage 0,500 dispersion: 0,000 critical chi-square: 27,587");
         }
     }
 }

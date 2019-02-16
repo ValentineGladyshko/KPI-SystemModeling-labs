@@ -35,7 +35,7 @@ namespace RNG.Library
 
         public double StatisticCount(double x1, double x2)
         {
-            int integral = 1000;
+            int integral = 10000;
             double step = (x2 - x1) / integral;
             double result = 0.0;
             for (int i = 0; i < integral; i++)
@@ -49,7 +49,8 @@ namespace RNG.Library
 
         public void DistributionStatistics()
         {
-            Console.WriteLine("Expected:\n\taverage: " + alpha.ToString("F4") + " dispersion: " + Math.Pow(sigma, 2).ToString("F4"));
+            Console.WriteLine("Expected:\n\taverage: " + alpha.ToString("F3") + " dispersion: " 
+                              + Math.Pow(sigma, 2).ToString("F3") + " critical chi-square: 27,587");
         }
 
         public double IndificateDistributionLaw(List<double> list)
@@ -84,8 +85,8 @@ namespace RNG.Library
                 
                 foreach (var some in stat)
                 {
-                    double x1 = StatisticCount(start, start + step);
-                    double x2 = (double)some / list.Count;
+                    double x1 = StatisticCount(start, start + step) * list.Count;
+                    double x2 = some;
                     сhi += Math.Pow((x1 - x2), 2) / x1;
                     start += step;
                 }

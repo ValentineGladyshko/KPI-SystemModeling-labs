@@ -21,7 +21,8 @@ namespace RNG.Library
 
         public void DistributionStatistics()
         {
-            Console.WriteLine("Expected:\n\taverage: " + (1.0 / lambda).ToString("F4") + " dispersion: " + (1.0 / Math.Pow(lambda, 2)).ToString("F4"));
+            Console.WriteLine("Expected:\n\taverage: " + (1.0 / lambda).ToString("F3") + " dispersion: " 
+                              + (1.0 / Math.Pow(lambda, 2)).ToString("F3") + " critical chi-square: 28,869");
         }
 
         public double IndificateDistributionLaw(List<double> list)
@@ -56,8 +57,8 @@ namespace RNG.Library
 
                 foreach (var some in stat)
                 {
-                    double x1 = StatisticCount(start + step) - StatisticCount(start);
-                    double x2 = (double) some / list.Count;
+                    double x1 = (StatisticCount(start + step) - StatisticCount(start)) * list.Count;
+                    double x2 = some;
                     сhi += Math.Pow((x1 - x2), 2) / x1;
                     start += step;
                 }

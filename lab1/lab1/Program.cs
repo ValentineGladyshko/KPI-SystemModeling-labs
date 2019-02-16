@@ -32,7 +32,7 @@ namespace RNG
             Show(list);
             random.DistributionStatistics();
             DistributionStatistics(list);
-            Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
+            Console.WriteLine(" chi-square: " + random.IndificateDistributionLaw(list).ToString("F3"));
 
             Console.WriteLine("\nUniform Random:\n");
 
@@ -47,7 +47,7 @@ namespace RNG
             Show(list);
             random.DistributionStatistics();
             DistributionStatistics(list);
-            Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
+            Console.WriteLine(" chi-square: " + random.IndificateDistributionLaw(list).ToString("F3"));
 
             Console.WriteLine("\nGauss Random:\n");
 
@@ -72,7 +72,7 @@ namespace RNG
             Show(list);
             random.DistributionStatistics();
             DistributionStatistics(list);
-            Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
+            Console.WriteLine(" chi-square: " + random.IndificateDistributionLaw(list).ToString("F3"));
 
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
@@ -82,7 +82,7 @@ namespace RNG
         {
             if (list != null)
             {
-                Console.WriteLine("min: " + list.Min().ToString("F") + " max: " + list.Max().ToString("F"));
+                Console.WriteLine("min: " + list.Min().ToString("F3") + " max: " + list.Max().ToString("F3"));
 
                 double step = (list.Max() - list.Min()) / 20;
                 double[] range = new double[21];
@@ -110,7 +110,7 @@ namespace RNG
 
                 foreach (var some in stat)
                 {
-                    Console.WriteLine(start.ToString("F") + " - " + (start + step).ToString("F") + " : " + some);
+                    Console.WriteLine(start.ToString("F3") + " - " + (start + step).ToString("F3") + " : " + some);
                     start += step;
                 }
             }
@@ -127,7 +127,7 @@ namespace RNG
 
             dispersion = dispersion / list.Count;
 
-            Console.WriteLine("Real:\n\taverage: " + average.ToString("F4") + " dispersion: " + dispersion.ToString("F4"));
+            Console.Write("Real:\n\taverage: " + average.ToString("F3") + " dispersion: " + dispersion.ToString("F3"));
         }
     }
 }
