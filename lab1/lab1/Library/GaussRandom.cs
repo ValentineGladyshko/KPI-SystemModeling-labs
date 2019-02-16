@@ -47,6 +47,11 @@ namespace RNG.Library
             return result;
         }
 
+        public void DistributionStatistics()
+        {
+            Console.WriteLine("Expected:\n\taverage: " + alpha.ToString("F4") + " dispersion: " + Math.Pow(sigma, 2).ToString("F4"));
+        }
+
         public double IndificateDistributionLaw(List<double> list)
         {
             if (list != null)

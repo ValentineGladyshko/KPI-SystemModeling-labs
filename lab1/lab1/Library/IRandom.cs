@@ -6,5 +6,6 @@ namespace RNG.Library
     {
         double Next();
         double IndificateDistributionLaw(List<double> list);
+        void DistributionStatistics();
     }
 }

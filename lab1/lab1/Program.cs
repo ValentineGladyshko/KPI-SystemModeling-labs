@@ -12,7 +12,16 @@ namespace RNG
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Exponential Random:\n");
+
+            Console.Write("Enter lambda: ");
+            string lambdaLine = Console.ReadLine();
             IRandom random = new ExponentialRandom();
+            if (double.TryParse(lambdaLine, out double lambda))
+            {
+                random = new ExponentialRandom(lambda);
+            }
+            
             List<double> list = new List<double>(10000);
 
             for (int i = 0; i < 10000; i++)
@@ -21,8 +30,11 @@ namespace RNG
             }
 
             Show(list);
+            random.DistributionStatistics();
             DistributionStatistics(list);
             Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
+
+            Console.WriteLine("\nUniform Random:\n");
 
             random = new UniformRandom();
             list = new List<double>(10000);
@@ -33,10 +45,23 @@ namespace RNG
             }
 
             Show(list);
+            random.DistributionStatistics();
             DistributionStatistics(list);
             Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
 
+            Console.WriteLine("\nGauss Random:\n");
+
+            Console.Write("Enter sigma: ");
+            string sigmaLine = Console.ReadLine();
+            Console.Write("Enter alpha: ");
+            string alphaLine = Console.ReadLine();
+
             random = new GaussRandom();
+            if (double.TryParse(sigmaLine, out double sigma) && double.TryParse(alphaLine, out double alpha))
+            {
+                random = new GaussRandom(sigma, alpha);
+            }
+
             list = new List<double>(10000);
 
             for (int i = 0; i < 10000; i++)
@@ -45,10 +70,11 @@ namespace RNG
             }
 
             Show(list);
+            random.DistributionStatistics();
             DistributionStatistics(list);
             Console.WriteLine("Quadratic Chi: " + random.IndificateDistributionLaw(list));
 
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
         }
 
@@ -82,8 +108,6 @@ namespace RNG
 
                 start = list.Min();
 
-                Console.WriteLine(stat.Sum());
-
                 foreach (var some in stat)
                 {
                     Console.WriteLine(start.ToString("F") + " - " + (start + step).ToString("F") + " : " + some);
@@ -103,7 +127,7 @@ namespace RNG
 
             dispersion = dispersion / list.Count;
 
-            Console.WriteLine("average: " + average.ToString("F4") + " dispersion: " + dispersion.ToString("F4"));
+            Console.WriteLine("Real:\n\taverage: " + average.ToString("F4") + " dispersion: " + dispersion.ToString("F4"));
         }
     }
 }

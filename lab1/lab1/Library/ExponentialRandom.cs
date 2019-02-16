@@ -19,6 +19,11 @@ namespace RNG.Library
             this.lambda = lambda;
         }
 
+        public void DistributionStatistics()
+        {
+            Console.WriteLine("Expected:\n\taverage: " + (1.0 / lambda).ToString("F4") + " dispersion: " + (1.0 / Math.Pow(lambda, 2)).ToString("F4"));
+        }
+
         public double IndificateDistributionLaw(List<double> list)
         {
             if (list != null)

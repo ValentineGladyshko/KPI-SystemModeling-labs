@@ -76,5 +76,10 @@ namespace RNG.Library
 
             return 10;
         }
+
+        public void DistributionStatistics()
+        {
+            Console.WriteLine("Expected:\n\taverage 0.5 dispersion: 0.0");
+        }
     }
 }
